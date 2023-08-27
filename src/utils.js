@@ -1,10 +1,5 @@
 import moment from "moment";
 
-export const getAllRounds = (history) => {
-  const rounds = history.map(x => x.round);
-  return [...new Set([...rounds])]
-}
-
 export const getAllDate = (history) => {
   const times = history.map(x => x.time).map((x => moment(x).format('YYYY/MM/DD')))
   return [...new Set([...times])]

@@ -57,7 +57,11 @@ function App() {
     <div className="App">
       <div>
         {
-          curRound ? `距本轮计数结束 ${roundCountdown}` : <button onClick={handleStartRound}>开始计数</button>
+          curRound ? <>
+            <div>
+              距本轮计数结束 {roundCountdown}
+            </div>
+          </> : <button onClick={handleStartRound}>开始计数</button>
         }
       </div>
 
@@ -67,7 +71,7 @@ function App() {
       </div>
 
       <div>
-        <Charts history={history} />
+        <Charts history={history} rounds={rounds} />
       </div>
     </div>
   );

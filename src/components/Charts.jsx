@@ -11,10 +11,10 @@ import {
 } from 'echarts/components';
 import { LabelLayout, UniversalTransition } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
-import { getAllRounds, getRawCount, getValidCount } from '../utils'
+import { getRawCount, getValidCount } from '../utils'
 import moment from "moment";
 
-const Charts = ({ history }) => {
+const Charts = ({ history, rounds }) => {
   const el = useRef();
 
   useEffect(() => {
@@ -41,7 +41,6 @@ const Charts = ({ history }) => {
 
   const chartOptions = useMemo(() => {
     const names = ['F1', 'F2']
-    const rounds = getAllRounds(history);
     const validData = names.map(x => {
       const roundsValidData = rounds.map(r => getValidCount(r, x)(history).filter(x => x.history.length).length);
       return {
@@ -90,7 +89,7 @@ const Charts = ({ history }) => {
 
       series: [...validData, ...rawData]
     }
-  }, [history]);
+  }, [history, rounds]);
 
   useEffect(() => {
     if (!charts || !chartOptions) return
